@@ -113,6 +113,10 @@ def main():
     elif mode_arg == "update_model":
         rebuild_model(update_only=True, settings=settings)
 
+    # Explicitly exit so the plugin process doesn't linger
+    # (imported libraries like TF/DeepFace can keep background threads alive)
+    os._exit(0)
+
 def can_read_image(image_path):
     """
     Check if an image path can be read, handling both regular files and files inside ZIP archives.
