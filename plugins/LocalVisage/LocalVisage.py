@@ -5,7 +5,7 @@ import tempfile
 from PythonDepManager import ensure_import
 # --- VENV AUTO-CREATION WITH REQUIREMENTS AND AUTO-RESTART ---
 venv_dir = os.path.join(os.path.dirname(__file__), "venv")
-requirements_path = os.path.join(os.path.dirname(__file__), "requirements.txt")
+requirements_path = os.path.join(os.path.dirname(__file__), "visage.requirements.txt")
 # --- PYTHON VERSION CHECK ---
 
 if not os.path.isdir(venv_dir) and not (sys.version_info.major == 3 and sys.version_info.minor >= 10):
