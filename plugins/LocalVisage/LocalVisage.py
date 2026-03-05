@@ -353,11 +353,15 @@ def spawn_server(server_connection=None):
     env = os.environ.copy()
     if server_connection is not None:
         env["SERVER_CONNECTION"] = json.dumps(server_connection)
+    devnull = subprocess.DEVNULL
     if platform.system() == "Windows":
         subprocess.Popen(
             cmd,
-            creationflags=subprocess.CREATE_NEW_CONSOLE,
+            creationflags=subprocess.CREATE_NEW_CONSOLE | subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP,
             close_fds=True,
+            stdin=devnull,
+            stdout=devnull,
+            stderr=devnull,
             cwd=plugin_dir,
             env=env
         )
@@ -366,6 +370,9 @@ def spawn_server(server_connection=None):
             cmd,
             start_new_session=True,
             close_fds=True,
+            stdin=devnull,
+            stdout=devnull,
+            stderr=devnull,
             cwd=plugin_dir,
             env=env
         )
