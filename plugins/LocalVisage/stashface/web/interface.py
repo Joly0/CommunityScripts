@@ -158,8 +158,8 @@ class WebInterface:
 
         return interface
 
-    def launch(self, server_name="0.0.0.0", server_port=7860, share=True):
-        """Launch the web interface"""
+    def create_demo(self):
+        """Create and return the Gradio demo without launching"""
         with gr.Blocks() as demo:
             with gr.Tabs() as tabs:
                 with gr.TabItem("Single Face Search"):
@@ -171,4 +171,10 @@ class WebInterface:
                 with gr.TabItem("Faces in Sprite"):
                     self._create_faces_in_sprite_interface()
 
-        demo.queue().launch(server_name=server_name,server_port=server_port,share=share, ssr_mode=False)
+        demo.queue()
+        return demo
+
+    def launch(self, server_name="0.0.0.0", server_port=7860, share=True):
+        """Launch the web interface"""
+        demo = self.create_demo()
+        demo.launch(server_name=server_name, server_port=server_port, share=share, ssr_mode=False)
