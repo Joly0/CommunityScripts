@@ -5,8 +5,6 @@ from urllib.parse import urlparse
 import numpy as np
 from typing import Dict, Any, Optional, List
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../py_dependencies/numpy_1.26.4")))
-
 server_connection = json.loads(os.environ.get("SERVER_CONNECTION"))
 from stashapi.stashapp import StashInterface
 
